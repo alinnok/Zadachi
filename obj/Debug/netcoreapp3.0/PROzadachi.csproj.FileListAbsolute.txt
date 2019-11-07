@@ -1,0 +1,13 @@
+C:\Users\a_kli\PROzadachi\bin\Debug\netcoreapp3.0\PROzadachi.exe
+C:\Users\a_kli\PROzadachi\bin\Debug\netcoreapp3.0\PROzadachi.deps.json
+C:\Users\a_kli\PROzadachi\bin\Debug\netcoreapp3.0\PROzadachi.runtimeconfig.json
+C:\Users\a_kli\PROzadachi\bin\Debug\netcoreapp3.0\PROzadachi.runtimeconfig.dev.json
+C:\Users\a_kli\PROzadachi\bin\Debug\netcoreapp3.0\PROzadachi.dll
+C:\Users\a_kli\PROzadachi\bin\Debug\netcoreapp3.0\PROzadachi.pdb
+C:\Users\a_kli\PROzadachi\obj\Debug\netcoreapp3.0\PROzadachi.csprojAssemblyReference.cache
+C:\Users\a_kli\PROzadachi\obj\Debug\netcoreapp3.0\PROzadachi.AssemblyInfoInputs.cache
+C:\Users\a_kli\PROzadachi\obj\Debug\netcoreapp3.0\PROzadachi.AssemblyInfo.cs
+C:\Users\a_kli\PROzadachi\obj\Debug\netcoreapp3.0\PROzadachi.dll
+C:\Users\a_kli\PROzadachi\obj\Debug\netcoreapp3.0\PROzadachi.pdb
+C:\Users\a_kli\PROzadachi\bin\Debug\netcoreapp3.0\Newtonsoft.Json.dll
+C:\Users\a_kli\PROzadachi\obj\Debug\netcoreapp3.0\PROzadachi.csproj.CopyComplete

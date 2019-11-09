@@ -22,7 +22,7 @@ namespace PROzadachi
             
             List<Zadacha> SpisokZadach = new List<Zadacha>();
             
-            string path = @"C:\Users\a_kli\PROzadachi\spisok.txt>";
+            //string path = @"C:\Users\a_kli\PROzadachi\spisok.txt>";
             
             while (ask!="exit")
             {
@@ -39,29 +39,21 @@ namespace PROzadachi
                         Console.WriteLine("Введите тэг задачи");
                         zadachaX.Tag=Console.ReadLine();                        
                         zadachaX.Date = DateTime.Now;
-                        SpisokZadach.Add(zadachaX);                       
+                        SpisokZadach.Add(zadachaX);                   
                         
-                        using (StreamWriter sw = new StreamWriter(path, true, System.Text.Encoding.Default))
+                        using (StreamWriter sw = new StreamWriter("spisok.txt", true, System.Text.Encoding.Default))
                         {
-                            sw.WriteLine(zadachaX);
+                            await sw.WriteLineAsync(zadachaX.kString());
                         }                  
+                        
+                        
                         Console.WriteLine("Введите команду для продолжения");
                         ask = Console.ReadLine();
                         break;
                     }
                     case "list":
                     {
-                        try
-                        {
-                            using (StreamReader sr = new StreamReader(path))
-                                {
-                                    Console.WriteLine(sr.ReadToEnd());
-                                }
-                        }
-                        catch
-                        {
-                            Console.WriteLine("Не удалось считать файл");
-                        }
+                        
                             foreach (var z in SpisokZadach)
                             {
                             Console.WriteLine("ID: " + z.Id + "\n " + z.Name + " ("+ z.Description + ") Тэг: " + z.Tag + " Дата создания: " + z.Date);
@@ -137,10 +129,18 @@ namespace PROzadachi
                         
                         break;
                     }*/
+                    case "wrong":
+                    {   
+                        Console.WriteLine("Введите команду для продолжения");
+                        ask = Console.ReadLine();                                        
+                        break;
+                    }
                     default: 
                     {
                         Console.WriteLine("Набрана неизвестная команда");
+                        ask="wrong";
                         break;
+                        
                     }
                 }
 

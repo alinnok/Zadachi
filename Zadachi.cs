@@ -8,6 +8,10 @@ namespace Zadachi
         public string Description {get;set;}
         public string Tag {get;set;}
         public DateTime Date {get; set;}
+        public string kString()
+            {
+                return $"{Id} \n{Name}  \n{Description} \n{Tag} \n{Date} \n";
+            }
     } 
 
 }

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Threading.Tasks;
+using System.Text.Json;
+//using Newtonsoft.Json;
 
 namespace PROzadachi
 {
@@ -20,10 +22,21 @@ namespace PROzadachi
 
             var ask = Console.ReadLine();
             
-            List<Zadacha> SpisokZadach = new List<Zadacha>();
+            List<Zadacha> SpisokZadach = new List<Zadacha>();         
             
-            //string path = @"C:\Users\a_kli\PROzadachi\spisok.txt>";
-            
+            string path = @"C:\Users\a_kli\PROzadachi\spisok.json>";
+            FileInfo finf = new FileInfo(path);
+            if (finf.Exists)
+            {
+                using (FileStream fs = new FileStream("spisok.json", FileMode.Open))
+                {
+                    Zadacha restoredZadacha = await JsonSerializer.DeserializeAsync<Zadacha>(fs);
+                }
+            }
+            else 
+            {
+                Console.WriteLine("Файл отсутствует");
+            }
             while (ask!="exit")
             {
                 switch (ask)
@@ -39,14 +52,18 @@ namespace PROzadachi
                         Console.WriteLine("Введите тэг задачи");
                         zadachaX.Tag=Console.ReadLine();                        
                         zadachaX.Date = DateTime.Now;
-                        SpisokZadach.Add(zadachaX);                   
-                        
+                        SpisokZadach.Add(zadachaX);
+
+                        using (FileStream fs = new FileStream("spisok.json", FileMode.Append))
+                        {
+                            await JsonSerializer.SerializeAsync<Zadacha>(fs, zadachaX);
+                        }                        
+                        /*Для записи в .txt
                         using (StreamWriter sw = new StreamWriter("spisok.txt", true, System.Text.Encoding.Default))
                         {
                             await sw.WriteLineAsync(zadachaX.kString());
                         }                  
-                        
-                        
+                        */                        
                         Console.WriteLine("Введите команду для продолжения");
                         ask = Console.ReadLine();
                         break;
@@ -72,14 +89,21 @@ namespace PROzadachi
                         var selectedZadacha = from z in SpisokZadach
                                             where z.Name==askName
                                             select z;
-                        foreach (var z in selectedZadacha)
+                        if (selectedZadacha==null)
+                            {
+                            Console.WriteLine("Не нашлось задачи с таким именем");
+                            }
+                        else
                         {
-                            Console.WriteLine("ID: " + z.Id + "\n " + z.Name + " ("+ z.Description + ") Тэг: " + z.Tag + " Дата создания: " + z.Date);
+                            foreach (var z in selectedZadacha)
+                            {
+                                Console.WriteLine("ID: " + z.Id + "\n " + z.Name + " ("+ z.Description + ") Тэг: " + z.Tag + " Дата создания: " + z.Date);
                             
-                        }
-                        Console.WriteLine("Введите команду для продолжения");
-                        ask = Console.ReadLine();
-                        break;
+                            }
+                        }    
+                            Console.WriteLine("Введите команду для продолжения");
+                            ask = Console.ReadLine();
+                            break;                        
                     }
                     case "byTag":
                     {   
